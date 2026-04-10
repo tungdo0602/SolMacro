@@ -23,6 +23,9 @@ For more infomation go to [here](https://dontkillmyapp.com/) to keep Termux awak
 + Open Termux, run `termux-setup-storage`
 + Run `pkg install termux-api nodejs git`
 + Run `cd storage && git clone "https://github.com/tungdo0602/BiomeNotifier.git && cd BiomeNotifier && node main"`
-+ Open Files, open Termux tab on the dropdown then open storage/BiomeNotifier and edit config.json
-+ Then run open Termux and run `node main` again to start
-+ Open Roblox and start afk
++ Open Files, open Termux tab on the dropdown then open storage/BiomeNotifier and edit `config.json`
++ Move `shizuku` folder to outside storage
+<img src="https://raw.githubusercontent.com/tungdo0602/BiomeNotifier/refs/heads/main/assets/image1.webp" width="200"/>
+
++ To start biome notifier, open Termux and run `cd storage/BiomeNotifier && start.sh`
++ Open Roblox and start afk (You can close the Termux window, it will run in background)
