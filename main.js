@@ -1,5 +1,5 @@
 let APP_CONFIG = {
-    push_notification: true,
+    push_current_biome_notification: true,
     rare_biome_actions: {
         toast: true,
         vibrate: true
@@ -9,7 +9,7 @@ let APP_CONFIG = {
         url: ""
     },
     private_server_link: "",
-    webhook_notification: {
+    notification: {
         NORMAL: false,
         WINDY: false,
         SNOWY: false,
