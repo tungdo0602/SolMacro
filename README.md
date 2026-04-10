@@ -23,7 +23,7 @@ For more infomation go to [here](https://dontkillmyapp.com/) to keep Termux awak
 #### Biome Notifier Setup
 + Open Termux, run `termux-setup-storage`
 + Run `pkg install termux-api nodejs git`
-+ Run `cd storage && git clone "https://github.com/tungdo0602/BiomeNotifier.git" && cd BiomeNotifier && node main`
++ Run `cd storage && git clone "https://github.com/tungdo0602/BiomeNotifier.git" && cd BiomeNotifier && npm install && node main`
 + Open Files, open Termux tab on the dropdown then open storage/BiomeNotifier and edit `config.json`
 + Move `shizuku` folder to outside storage
 <img src="https://raw.githubusercontent.com/tungdo0602/BiomeNotifier/refs/heads/main/assets/image1.webp" width="200"/>
