@@ -17,6 +17,7 @@
 + Open Shizuku and enable it ([Tutorial](https://youtu.be/tm5qvhw7T6Q?si=uNeBvMtabtWX4X9X&t=129))
 + Open settings -> Apps -> Termux -> Battery, choose "Unrestricted", do the same thing with Termux:API
 <img src="https://dontkillmyapp.com/assets/img/samsung/samsung13_per_app_4.jpg" width="200"/>
+
 For more infomation go to [here](https://dontkillmyapp.com/) to keep Termux awake
 
 + Open Termux, run `termux-setup-storage`
