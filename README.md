@@ -30,3 +30,5 @@ For more infomation go to [here](https://dontkillmyapp.com/) to keep Termux awak
 
 + To start biome notifier, open Termux and run `cd storage/BiomeNotifier && start.sh`
 + Open Roblox and start afk (You can close the Termux window, it will run in background)
+
+#### You can use Termux:widget to add a shortcut to the home screen so you don't need to open Termux and run command again
