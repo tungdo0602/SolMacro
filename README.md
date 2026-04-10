@@ -10,7 +10,7 @@
 + [Termux:Widget (optional)](https://github.com/termux/termux-widget)
 
 ## Setup
-#### 1.1: Apps Setup
+#### Apps Setup
 + Install required apps
 + Go to settings, enable developer mode (if you haven't)
 + Enable Wireless Debugging and USB Debugging
@@ -20,9 +20,10 @@
 
 For more infomation go to [here](https://dontkillmyapp.com/) to keep Termux awake
 
+#### Biome Notifier Setup
 + Open Termux, run `termux-setup-storage`
 + Run `pkg install termux-api nodejs git`
-+ Run `cd storage && git clone "https://github.com/tungdo0602/BiomeNotifier.git && cd BiomeNotifier && node main"`
++ Run `cd storage && git clone "https://github.com/tungdo0602/BiomeNotifier.git" && cd BiomeNotifier && node main`
 + Open Files, open Termux tab on the dropdown then open storage/BiomeNotifier and edit `config.json`
 + Move `shizuku` folder to outside storage
 <img src="https://raw.githubusercontent.com/tungdo0602/BiomeNotifier/refs/heads/main/assets/image1.webp" width="200"/>
