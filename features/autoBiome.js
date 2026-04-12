@@ -2,21 +2,23 @@ const { parentPort } = require("node:worker_threads");
 const { sleep } = require("../core/utils");
 const { TouchManager } = require("../core/touchManager");
 
+const delay = 500;
+
 async function rollBiome(){
-    TouchManager.touch("inv");
-    await sleep(100);
-    TouchManager.touch("invItems");
-    await sleep(100);
-    TouchManager.typeText("strange controller");
-    await sleep(100);
-    TouchManager.touch("invFirstItem");
-    await sleep(100);
-    TouchManager.touch("invUse");
-    await sleep(100);
-    TouchManager.touch("invClose");
+    await TouchManager.touch("inv");
+    await sleep(delay);
+    await TouchManager.touch("invItems");
+    await sleep(delay);
+    await TouchManager.typeText("strange controller");
+    await sleep(delay);
+    await TouchManager.touch("invFirstItem");
+    await sleep(delay);
+    await TouchManager.touch("invUse");
+    await sleep(delay);
+    await TouchManager.touch("invClose");
     setTimeout(rollBiome, 30000);
 }
 
 parentPort.on("message", function(){
-    rollBiome();
+    setTimeout(rollBiome, 30000);
 });
