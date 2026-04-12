@@ -13,6 +13,10 @@ class TouchManager {
     async touch(name){
         return this.touchPos(...this.data[name]);
     }
+
+    async typeText(content){
+        return exec(`rish -c 'input text "${content}"'`)
+    }
 }
 
 module.exports = { TouchManager };

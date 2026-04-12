@@ -42,6 +42,8 @@ if(existsSync("./config.json")){
     process.exit();
 }
 
+writeFileSync("./state.txt", "");
+
 let workers = {}
 const touchManager = new TouchManager();
 
@@ -68,9 +70,11 @@ function createWorker(name, path, data = {}){
 }
 
 createWorker("notifier", "./features/biomeNotifier.js", APP_CONFIG.notifier);
-console.log("Started notifier thread!");
+console.log("Started Aiome Notifier!");
 
 if(APP_CONFIG.anti_AFK){
     createWorker("antiAFK", "./features/antiAFK.js", touchManager);
-    console.log("Started Anti AFK thread!");
+    console.log("Started Anti AFK!");
 }
+
+createWorker("autoBiome", "./features/autoBiome.js", touchManager);
