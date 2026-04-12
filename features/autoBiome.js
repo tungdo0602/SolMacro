@@ -15,7 +15,7 @@ async function rollBiome(){
     await sleep(delay);
     await TouchManager.touch("invUse");
     await sleep(delay);
-    await TouchManager.touch("invClose");
+    await TouchManager.touch("inv");
     setTimeout(rollBiome, 30000);
 }
 
