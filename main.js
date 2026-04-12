@@ -46,7 +46,7 @@ let workers = {}
 const touchManager = new TouchManager();
 
 function preExit(){
-    for(const k of workers){
+    for(const k in workers){
         if(workers[k]) workers[k].terminate();
     }
     process.exit();
