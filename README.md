@@ -1,6 +1,12 @@
 # Biome Notifier
 #### Simple biome detection for android
 
+### Features
++ Biome detection & notifier
++ Anti AFK
++ Merchant detection (TODO)
++ Fish automation (TODO)
+
 ## Installation
 #### Required apps:
 + [Termux](https://github.com/termux/termux-app)
