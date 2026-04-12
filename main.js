@@ -75,4 +75,4 @@ if(APP_CONFIG.anti_AFK){
     console.log("Started Anti AFK!");
 }
 
-//createWorker("autoBiome", "./features/autoBiome.js");
+createWorker("autoBiome", "./features/autoBiome.js");

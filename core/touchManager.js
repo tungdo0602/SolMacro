@@ -1,19 +1,19 @@
 const { exec } = require("child_process");
 
 const touchData = {
-    "blank": [1025, 1230],
-    "chat": [1000, 455],
-    "jump": [140, 2100],
-    "play": [75, 415],
-    "auraInv": [800, 155],
-    "inv": [595, 150],
-    "invItems": [775, 1545],
-    "invUse": [505, 850],
-    "invClose": [815, 1695],
-    "invSearch": [355, 2155],
-    "invFirstItem": [630, 1025],
-    "fish": [272, 877],
-    "fishDialogClose": [926, 1488]
+    "blank": [1230, 1025],
+    "chat": [455, 1000],
+    "jump": [2100, 140],
+    "play": [415, 75],
+    "auraInv": [155, 800],
+    "inv": [150, 595],
+    "invItems": [1545, 775],
+    "invUse": [850, 505],
+    "invClose": [1695, 815],
+    "invSearch": [2155, 355],
+    "invFirstItem": [1025, 630],
+    "fish": [877, 272],
+    "fishDialogClose": [1488, 926]
 }
 
 class TouchManager {
