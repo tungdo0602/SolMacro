@@ -30,7 +30,6 @@ let APP_CONFIG = {
 }
 
 const { readFileSync, writeFileSync, existsSync } = require("fs");
-const { TouchManager } = require("./core/touchManager");
 const { Worker } = require("node:worker_threads");
 
 if(existsSync("./config.json")){
@@ -44,8 +43,7 @@ if(existsSync("./config.json")){
 
 writeFileSync("./state.txt", "");
 
-let workers = {}
-const touchManager = new TouchManager();
+const workers = {}
 
 function preExit(){
     for(const k in workers){
@@ -73,8 +71,8 @@ createWorker("notifier", "./features/biomeNotifier.js", APP_CONFIG.notifier);
 console.log("Started Aiome Notifier!");
 
 if(APP_CONFIG.anti_AFK){
-    createWorker("antiAFK", "./features/antiAFK.js", touchManager);
+    createWorker("antiAFK", "./features/antiAFK.js");
     console.log("Started Anti AFK!");
 }
 
-createWorker("autoBiome", "./features/autoBiome.js", touchManager);
+createWorker("autoBiome", "./features/autoBiome.js");
