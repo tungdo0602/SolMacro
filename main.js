@@ -31,6 +31,7 @@ let APP_CONFIG = {
 
 const { readFileSync, writeFileSync, existsSync } = require("fs");
 const { TouchManager } = require("./core/touchManager");
+const { Worker } = require("node:worker_threads");
 
 if(existsSync("./config.json")){
     APP_CONFIG = JSON.parse(readFileSync("./config.json", "utf-8"));

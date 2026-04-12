@@ -14,3 +14,5 @@ class TouchManager {
         return this.touchPos(...this.data[name]);
     }
 }
+
+module.exports = { TouchManager };

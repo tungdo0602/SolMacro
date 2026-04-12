@@ -100,5 +100,5 @@ function start(){
 
 parentPort.on("message", function(data){
     APP_CONFIG = data;
-    notifier_thread();
+    start();
 });
