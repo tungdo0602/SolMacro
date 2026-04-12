@@ -11,6 +11,10 @@ if(existsSync("./thumbnailCache.json")){
     console.log("[Notifier] Loaded thumbnail cache!");
 }
 
+async function pushBiomeStatus(biome){
+    exec(`termux-notification --priority min --id "st_notifier" --title "Current Biome: ${biome}"`);
+}
+
 async function sendWebhook(biome, isRareBiome, assetId = ""){
     if(!thumbnailCache[assetId]){
         let res = await fetch(`https://thumbnails.roblox.com/v1/assets?assetIds=${assetId}&size=512x512&format=Png&isCircular=false`);
@@ -66,6 +70,7 @@ for(const biome in APP_CONFIG.webhook_notification){
 }
 
 function start(){
+    if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus("UNKNOWN");
     spawn("rish", ["-c", "logcat -c"]);
     const logcat = spawn("rish", ["-c", "logcat"]);
 
@@ -89,7 +94,7 @@ function start(){
                             }
                             if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook(biome, isRareBiome, assetId);
                         }
-                        if(APP_CONFIG.push_current_biome_notification) exec(`termux-notification --priority min --id "st_notifier" --title "Current Biome: ${biome}"`);
+                        if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus(biome);
                     }
                     prevState = state;
                 }
