@@ -88,7 +88,7 @@ watch("./state.txt", (eventType, _) => {
 })
 
 writeFileSync("./state.txt", "");
-
+updateMainButtonState();
 createWorker("notifier", "./features/biomeNotifier.js", APP_CONFIG.notifier);
 console.log("Started Aiome Notifier!");
 
