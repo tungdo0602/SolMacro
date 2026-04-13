@@ -81,6 +81,7 @@ watch("./state.txt", (eventType, _) => {
                 workers.autoBiome = null;
             } else createWorker("autoBiome", "./features/autoBiome.js");
             updateMainButtonState();
+            console.log((workers.autoBiome ? "Enabled" : "Disabled"), "Auto Biome!");
         } else if(state === "2"){
             // TODO
         }
