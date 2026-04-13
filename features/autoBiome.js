@@ -6,6 +6,7 @@ const delay = 500;
 
 async function rollBiome(){
     if(isFocusedOnRoblox()){
+        console.log("Using strange controller...");
         TouchManager.touch(getActionButtonPos(ACTION_BUTTON.INVENTORY));
         await sleep(delay);
         TouchManager.touch("invItems");
