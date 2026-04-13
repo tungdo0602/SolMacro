@@ -10,7 +10,7 @@ const ACTION_BUTTON = {
 }
 
 const touchData = {
-    "blank": [1230, 1025],
+    "blank": [1200, 50],
     "jump": [2090, 900],
     "invItems": [1500, 300],
     "invUse": [875, 580],
