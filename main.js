@@ -69,7 +69,7 @@ function createWorker(name, path, data = {}){
 }
 
 function updateMainButtonState(){
-    execSync(`rish -c 'termux-notification -i "solmacro" -t "SolMacro" --ongoing --button1 "${workers.autoBiome ? "Disable" : "Enable"} Auto Biome" --button1-action "echo 1 > $PWD/state.txt" --button2 "${workers.autoFishing ? "Disable" : "Enable"} Auto Fishing" --button2-action "echo 2 > $PWD/state.txt"'`)
+    execSync(`termux-notification -i "solmacro" -t "SolMacro" --ongoing --button1 "${workers.autoBiome ? "Disable" : "Enable"} Auto Biome" --button1-action "echo 1 > $PWD/state.txt" --button2 "${workers.autoFishing ? "Disable" : "Enable"} Auto Fishing" --button2-action "echo 2 > $PWD/state.txt"`)
 }
 
 watch("./state.txt", (eventType, _) => {
