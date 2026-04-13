@@ -84,6 +84,7 @@ watch("./state.txt", (eventType, _) => {
         } else if(state === "2"){
             // TODO
         }
+        writeFileSync("./state.txt", "");
     }
 })
 
