@@ -33,7 +33,7 @@ For more infomation go to [here](https://dontkillmyapp.com/) for specific androi
 termux-setup-storage
 ```
 ```bash
-pkg install termux-api nodejs git
+pkg install termux-api nodejs git grep
 ```
 ```bash
 cd storage && git clone "https://github.com/tungdo0602/SolMacro.git" && cd SolMacro && bash setup.sh
