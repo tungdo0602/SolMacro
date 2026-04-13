@@ -13,7 +13,7 @@
 + [Termux](https://github.com/termux/termux-app)
 + [Termux:API](https://github.com/termux/termux-api)
 + [Shizuku (by thedjchi)](https://github.com/thedjchi/Shizuku)
-+ [Files (optional, for access termux storage)](https://play.google.com/store/apps/details?id=com.marc.files)
++ [QuickEdit (optional, for edit config)](https://play.google.com/store/apps/details?id=com.rhmsoft.edit)
 + [Termux:Widget (optional)](https://github.com/termux/termux-widget)
 
 ## Setup
@@ -28,10 +28,19 @@
 For more infomation go to [here](https://dontkillmyapp.com/) for specific android phone
 
 #### Biome Notifier Setup
-+ Open Termux, run `termux-setup-storage`
-+ Run `pkg install termux-api nodejs git`
-+ Run `cd storage && git clone "https://github.com/tungdo0602/SolMacro.git" && cd SolMacro && bash setup.sh`
-+ Open Files, open Termux tab on the dropdown then open storage/BiomeNotifier and edit `config.json`
++ Open Termux, and run these commands
+```bash
+termux-setup-storage
+```
+```bash
+pkg install termux-api nodejs git
+```
+```bash
+cd storage && git clone "https://github.com/tungdo0602/SolMacro.git" && cd SolMacro && bash setup.sh
+```
++ Open QuickEdit -> open (SAF), then heads to Termux tab on the dropdown and open `storage/BiomeNotifier` and edit `config.json`
+<img src="https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/image2.webp" width="200"/>
+<img src="https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/image3.webp" width="200"/>
 <img src="https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/image1.webp" width="200"/>
 
 + To start biome notifier, open Termux and run `cd storage/SolMacro && bash start.sh`
