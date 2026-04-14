@@ -8,7 +8,7 @@ let thumbnailCache = {}
 
 if(existsSync("./thumbnailCache.json")){
     thumbnailCache = JSON.parse(readFileSync("./thumbnailCache.json", "utf-8"));
-    console.log("[Notifier] Loaded thumbnail cache!");
+    console.log("Loaded thumbnail cache!");
 }
 
 async function pushBiomeStatus(biome){
@@ -22,7 +22,6 @@ async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Star
             thumbnailCache[assetId] = (await res.json()).data[0].imageUrl;
             writeFileSync("./thumbnailCache.json", JSON.stringify(thumbnailCache));
         }
-        console.log("thumbnail", res.status);
     }
     let body = {
         "content": (isRareBiome ? "@everyone" : ""),
@@ -71,11 +70,10 @@ console.log("Make sure to enable shizuku before start!");
 let biomes = []
 let prevState = ""
 
-for(const biome in APP_CONFIG.webhook_notification){
-    if(APP_CONFIG.webhook_notification[biome]) biomes.push(biome);
-}
-
 function startNotifier(){
+    for(const biome in APP_CONFIG.webhook_notification){
+        if(APP_CONFIG.webhook_notification[biome]) biomes.push(biome);
+    }
     sendWebhook("Biome Notifier started!", false, "", "Status");
     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus("UNKNOWN");
     spawn("rish", ["-c", "logcat -c"]);
@@ -93,8 +91,6 @@ function startNotifier(){
                     const assetId = rpcData.largeImage.assetId;
                     // First condition check if the action is equip aura lol
                     if(state == prevState || !prevState){
-                        console.log(biome, biomes.includes(biome), state);
-                        console.log(biomes);
                         if(biomes.includes(biome)){
                             let isRareBiome = (biome == "GLITCHED" || biome == "DREAMSPACE" || biome == "CYBERSPACE");
                             if(isRareBiome){
