@@ -33,7 +33,7 @@ For more infomation go to [here](https://dontkillmyapp.com/) for specific androi
 termux-setup-storage
 ```
 ```bash
-pkg install termux-api nodejs git
+pkg install termux-api nodejs git grep
 ```
 ```bash
 cd storage && git clone "https://github.com/tungdo0602/SolMacro.git" && cd SolMacro && bash setup.sh
@@ -43,7 +43,10 @@ cd storage && git clone "https://github.com/tungdo0602/SolMacro.git" && cd SolMa
 <img src="https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/image3.webp" width="200"/>
 <img src="https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/image1.webp" width="200"/>
 
-+ To start biome notifier, open Termux and run `cd storage/SolMacro && bash start.sh`
++ To start biome notifier, open Termux and run (No need to run commands above if you've already ran it)
+```bash
+cd storage/SolMacro && bash start.sh`
+```
 + Open Roblox and start afk (You can close the Termux window, it will run in background)
 
 #### You can use Termux:widget to add a shortcut to the home screen so you don't need to open Termux and run command again
