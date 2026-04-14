@@ -147,3 +147,4 @@ config.json
 thumbnailCache.json
 test.js
 testworker.js
+state.txt
