@@ -48,10 +48,15 @@ const workers = {}
 
 function createWorker(name, path, data = {}){
     workers[name] = new Worker(path, {
-        stdout: true
+        stdout: true,
+        stderr: true
     });
 
     workers[name].stdout.on("data", (c) => {
+        process.stdout.write(c);
+    });
+
+    workers[name].stderr.on("data", (c) => {
         process.stdout.write(c);
     });
 
