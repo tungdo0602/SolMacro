@@ -55,6 +55,8 @@ function updateMainButtonState(){
     execSync(`termux-notification -i "solmacro" -t "SolMacro" --ongoing --button1 "${workers.autoBiome ? "Disable" : "Enable"} Auto Biome" --button1-action "echo 1 > $PWD/state.txt" --button2 "${workers.autoFishing ? "Disable" : "Enable"} Auto Fishing" --button2-action "echo 2 > $PWD/state.txt"`)
 }
 
+writeFileSync("./state.txt", "");
+
 watch("./state.txt", async (eventType, _) => {
     if(eventType == "change"){
         const state = (await readFile("./state.txt", "utf-8")).trim();
@@ -72,7 +74,6 @@ watch("./state.txt", async (eventType, _) => {
     }
 });
 
-writeFileSync("./state.txt", "");
 //updateMainButtonState();
 createWorker("notifier", "./features/biomeNotifier.js", APP_CONFIG.notifier);
 console.log("Started Biome Notifier!");

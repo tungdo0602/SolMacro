@@ -21,7 +21,8 @@
 + Install required apps
 + Go to settings, enable developer mode (if you haven't)
 + Enable Wireless Debugging and USB Debugging
-+ Open Shizuku and start it ([Tutorial](https://youtu.be/tm5qvhw7T6Q?si=uNeBvMtabtWX4X9X&t=129))
++ Open Shizuku and open its settings, then enable `Start on boot` and `Watchdog`.
++ After that go back and start it ([Tutorial](https://youtu.be/tm5qvhw7T6Q?si=uNeBvMtabtWX4X9X&t=129))
 + Open settings -> Apps -> Termux -> Battery, choose "Unrestricted", do the same thing with Termux:API
 <img src="https://dontkillmyapp.com/assets/img/samsung/samsung13_per_app_4.jpg" width="200"/>
 
