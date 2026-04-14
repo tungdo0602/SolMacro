@@ -2,6 +2,7 @@ const { exec, spawn } = require('child_process');
 const { readFileSync, writeFileSync, existsSync } = require("fs");
 const { parentPort } = require("node:worker_threads");
 const split2 = require("split2");
+const RPC_REGEX = /\[BloxstrapRPC.*?\}\}\}/;
 
 let APP_CONFIG = {}
 let thumbnailCache = {}
@@ -67,8 +68,8 @@ async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Star
 
 console.log("Make sure to enable shizuku before start!");
 
-let biomes = []
-let prevState = ""
+let biomes = [];
+let prevState = "";
 
 function startNotifier(){
     for(const biome in APP_CONFIG.webhook_notification){
@@ -81,28 +82,26 @@ function startNotifier(){
 
     logcat.stdout.pipe(split2()).on("data", (line)=>{
         const text = line.toString();
-        if(text.includes("[BloxstrapRPC]")){
-            const start = text.indexOf("{");
-            if(start != -1){
-                const rpcData = JSON.parse(text.slice(start)).data
-                if(rpcData.smallImage && rpcData.smallImage.hoverText === "Sol's RNG" && rpcData.largeImage){
-                    const biome = rpcData.largeImage.hoverText
-                    const state = rpcData.state
-                    const assetId = rpcData.largeImage.assetId;
-                    // First condition check if the action is equip aura lol
-                    if(state == prevState || !prevState){
-                        if(biomes.includes(biome)){
-                            let isRareBiome = (biome == "GLITCHED" || biome == "DREAMSPACE" || biome == "CYBERSPACE");
-                            if(isRareBiome){
-                                if(APP_CONFIG.rare_biome_actions.toast) exec(`termux-toast "${biome} just started!!!"`);
-                                if(APP_CONFIG.rare_biome_actions.vibrate) exec("termux-vibrate");
-                            }
-                            if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook(biome, isRareBiome, assetId);
+        const res = text.match(RPC_REGEX);
+        if(res){
+            const rpcData = JSON.parse(res[0].slice(15)).data;
+            if(rpcData.smallImage && rpcData.smallImage.hoverText === "Sol's RNG" && rpcData.largeImage){
+                const biome = rpcData.largeImage.hoverText;
+                const state = rpcData.state;
+                const assetId = rpcData.largeImage.assetId;
+                // First condition check if the action is equip aura lol
+                if(state == prevState || !prevState){
+                    if(biomes.includes(biome)){
+                        let isRareBiome = (biome == "GLITCHED" || biome == "DREAMSPACE" || biome == "CYBERSPACE");
+                        if(isRareBiome){
+                            if(APP_CONFIG.rare_biome_actions.toast) exec(`termux-toast "${biome} just started!!!"`);
+                            if(APP_CONFIG.rare_biome_actions.vibrate) exec("termux-vibrate");
                         }
-                        if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus(biome);
+                        if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook(biome, isRareBiome, assetId);
                     }
-                    prevState = state;
+                    if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus(biome);
                 }
+                prevState = state;
             }
         }
     });

@@ -30,6 +30,7 @@ let APP_CONFIG = {
 }
 
 const { readFileSync, writeFileSync, existsSync, watch } = require("fs");
+const { readFile, writeFile } = require("fs/promises");
 const { execSync } = require("child_process");
 const { Worker } = require("node:worker_threads");
 
@@ -54,10 +55,9 @@ function updateMainButtonState(){
     execSync(`termux-notification -i "solmacro" -t "SolMacro" --ongoing --button1 "${workers.autoBiome ? "Disable" : "Enable"} Auto Biome" --button1-action "echo 1 > $PWD/state.txt" --button2 "${workers.autoFishing ? "Disable" : "Enable"} Auto Fishing" --button2-action "echo 2 > $PWD/state.txt"`)
 }
 
-/*
-watch("./state.txt", (eventType, _) => {
+watch("./state.txt", async (eventType, _) => {
     if(eventType == "change"){
-        const state = readFileSync("./state.txt", "utf-8").trim();
+        const state = (await readFile("./state.txt", "utf-8")).trim();
         if(state === "1"){
             if(workers.autoBiome){
                 workers.autoBiome.terminate();
@@ -68,10 +68,10 @@ watch("./state.txt", (eventType, _) => {
         } else if(state === "2"){
             // TODO
         }
-        writeFileSync("./state.txt", "");
+        await writeFile("./state.txt", "");
     }
 });
-*/
+
 writeFileSync("./state.txt", "");
 //updateMainButtonState();
 createWorker("notifier", "./features/biomeNotifier.js", APP_CONFIG.notifier);
