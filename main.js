@@ -30,7 +30,7 @@ let APP_CONFIG = {
 }
 
 const { readFileSync, writeFileSync, existsSync, watch } = require("fs");
-const { readFile, writeFile } = require("fs/promises")
+const { readFile, writeFile } = require("fs/promises");
 const { execSync } = require("child_process");
 const { Worker } = require("node:worker_threads");
 
@@ -57,7 +57,7 @@ function updateMainButtonState(){
 
 watch("./state.txt", async (eventType, _) => {
     if(eventType == "change"){
-        const state = await readFile("./state.txt", "utf-8").trim();
+        const state = (await readFile("./state.txt", "utf-8")).trim();
         if(state === "1"){
             if(workers.autoBiome){
                 workers.autoBiome.terminate();
