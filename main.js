@@ -47,18 +47,7 @@ writeFileSync("./state.txt", "");
 const workers = {}
 
 function createWorker(name, path, data = {}){
-    workers[name] = new Worker(path, {
-        stdout: true,
-        stderr: true
-    });
-
-    workers[name].stdout.on("data", (c) => {
-        process.stdout.write(c);
-    });
-
-    workers[name].stderr.on("data", (c) => {
-        process.stdout.write(c);
-    });
+    workers[name] = new Worker(path);
 
     if(data) workers[name].postMessage(data);
 }

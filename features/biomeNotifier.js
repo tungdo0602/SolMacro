@@ -64,7 +64,6 @@ async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Star
     if(res.status !== 204){
         console.log(`Failed to send webhook [${res.status}]`);
     }
-    console.log("webhook", res.status);
 }
 
 console.log("Make sure to enable shizuku before start!");
@@ -76,7 +75,7 @@ for(const biome in APP_CONFIG.webhook_notification){
     if(APP_CONFIG.webhook_notification[biome]) biomes.push(biome);
 }
 
-function start(){
+function startNotifier(){
     sendWebhook("Biome Notifier started!", false, "", "Status");
     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus("UNKNOWN");
     spawn("rish", ["-c", "logcat -c"]);
@@ -114,5 +113,5 @@ function start(){
 
 parentPort.on("message", function(data){
     APP_CONFIG = data;
-    start();
+    startNotifier();
 });
