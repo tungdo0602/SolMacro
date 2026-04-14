@@ -94,6 +94,7 @@ function start(){
                     const assetId = rpcData.largeImage.assetId;
                     // First condition check if the action is equip aura lol
                     if((state == prevState || !prevState)){
+                        console.log(biome, biomes.includes(biome), state);
                         if(biomes.includes(biome)){
                             let isRareBiome = (biome == "GLITCHED" || biome == "DREAMSPACE" || biome == "CYBERSPACE");
                             if(isRareBiome){
