@@ -15,7 +15,7 @@ async function pushBiomeStatus(biome){
     exec(`termux-notification --priority min --id "st_notifier" --title "Current Biome: ${biome}"`);
 }
 
-async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Started"){
+async function sendWebhook(biome, isRareBiome, showJoinButton = true, assetId = "", title = "Biome Started"){
     if(!thumbnailCache[assetId] && assetId){
         let res = await fetch(`https://thumbnails.roblox.com/v1/assets?assetIds=${assetId}&size=512x512&format=Png&isCircular=false`);
         if(res.status == 200){
@@ -33,8 +33,10 @@ async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Star
                 "title": biome,
                 "description": `**Started at:** <t:${Math.floor(Date.now()/1000)}:R>`,
             }
-        ],
-        "components": [
+        ]
+    }
+    if(APP_CONFIG.private_server_link){
+        body["components"] = [
         {
             "type": 1,
             "components": [
@@ -48,7 +50,7 @@ async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Star
                 }
             ]
         }
-        ],
+        ]
     }
     if(thumbnailCache[assetId]) body.embeds[0].thumbnail = {"url": thumbnailCache[assetId]}
     const res = await fetch(`${APP_CONFIG.webhook.url}?with_components=true`, {
