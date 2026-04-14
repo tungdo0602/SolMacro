@@ -15,8 +15,8 @@ async function pushBiomeStatus(biome){
     exec(`termux-notification --priority min --id "st_notifier" --title "Current Biome: ${biome}"`);
 }
 
-async function sendWebhook(biome, isRareBiome, assetId = ""){
-    if(!thumbnailCache[assetId]){
+async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Started"){
+    if(!thumbnailCache[assetId] && assetId){
         let res = await fetch(`https://thumbnails.roblox.com/v1/assets?assetIds=${assetId}&size=512x512&format=Png&isCircular=false`);
         if(res.status == 200){
             thumbnailCache[assetId] = (await res.json()).data[0].imageUrl;
@@ -28,7 +28,7 @@ async function sendWebhook(biome, isRareBiome, assetId = ""){
         "embeds": [
             {
                 "author": {
-                    "name": "Biome Started"
+                    "name": title 
                 },
                 "title": biome,
                 "description": `**Started at:** <t:${Math.floor(Date.now()/1000)}:R>`,
@@ -51,16 +51,19 @@ async function sendWebhook(biome, isRareBiome, assetId = ""){
         ],
     }
     if(thumbnailCache[assetId]) body.embeds[0].thumbnail = {"url": thumbnailCache[assetId]}
-    await fetch(`${APP_CONFIG.webhook.url}?with_components=true`, {
+    const res = await fetch(`${APP_CONFIG.webhook.url}?with_components=true`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(body)
     });
+    if(res.status !== 204){
+        console.log(`Failed to send webhook [${res.status}]`);
+    }
 }
 
-console.log("[Biome Notifier] Make sure to enable shizuku before start!");
+console.log("Make sure to enable shizuku before start!");
 
 let biomes = []
 let prevState = ""
@@ -70,6 +73,7 @@ for(const biome in APP_CONFIG.webhook_notification){
 }
 
 function start(){
+    sendWebhook("Biome Notifier started!", false, "", "Status");
     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus("UNKNOWN");
     spawn("rish", ["-c", "logcat -c"]);
     const logcat = spawn("rish", ["-c", "logcat"]);

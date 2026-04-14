@@ -1,5 +1,5 @@
 let APP_CONFIG = {
-    anti_AFK: true,
+    anti_AFK: false,
     notifier: {
         push_current_biome_notification: true,
         rare_biome_actions: {
@@ -46,16 +46,6 @@ writeFileSync("./state.txt", "");
 
 const workers = {}
 
-function preExit(){
-    for(const k in workers){
-        if(workers[k]) workers[k].terminate();
-    }
-    process.exit();
-}
-
-process.on("SIGINT", preExit);
-process.on("SIGTERM", preExit);
-
 function createWorker(name, path, data = {}){
     workers[name] = new Worker(path, {
         stdout: true
@@ -87,12 +77,12 @@ watch("./state.txt", (eventType, _) => {
         }
         writeFileSync("./state.txt", "");
     }
-})
+});
 
 writeFileSync("./state.txt", "");
-updateMainButtonState();
+//updateMainButtonState();
 createWorker("notifier", "./features/biomeNotifier.js", APP_CONFIG.notifier);
-console.log("Started Aiome Notifier!");
+console.log("Started Biome Notifier!");
 
 if(APP_CONFIG.anti_AFK){
     createWorker("antiAFK", "./features/antiAFK.js");
