@@ -15,13 +15,14 @@ async function pushBiomeStatus(biome){
     exec(`termux-notification --priority min --id "st_notifier" --title "Current Biome: ${biome}"`);
 }
 
-async function sendWebhook(biome, isRareBiome, showJoinButton = true, assetId = "", title = "Biome Started"){
+async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Started"){
     if(!thumbnailCache[assetId] && assetId){
-        let res = await fetch(`https://thumbnails.roblox.com/v1/assets?assetIds=${assetId}&size=512x512&format=Png&isCircular=false`);
+        const res = await fetch(`https://thumbnails.roblox.com/v1/assets?assetIds=${assetId}&size=512x512&format=Png&isCircular=false`);
         if(res.status == 200){
             thumbnailCache[assetId] = (await res.json()).data[0].imageUrl;
             writeFileSync("./thumbnailCache.json", JSON.stringify(thumbnailCache));
         }
+        console.log("thumbnail", res.status);
     }
     let body = {
         "content": (isRareBiome ? "@everyone" : ""),
@@ -63,6 +64,7 @@ async function sendWebhook(biome, isRareBiome, showJoinButton = true, assetId = 
     if(res.status !== 204){
         console.log(`Failed to send webhook [${res.status}]`);
     }
+    console.log("webhook", res.status);
 }
 
 console.log("Make sure to enable shizuku before start!");
