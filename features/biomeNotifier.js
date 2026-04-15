@@ -80,7 +80,7 @@ function startNotifier(){
     spawn("rish", ["-c", "logcat -c"]);
     const logcat = spawn("rish", ["-c", "logcat"]);
 
-    logcat.stdout.pipe(split2()).on("data", (line)=>{
+    logcat.stdout.pipe(split2()).on("data", (line) => {
         const text = line.toString();
         const res = text.match(RPC_REGEX);
         if(res){
@@ -88,6 +88,9 @@ function startNotifier(){
             if(rpcData.smallImage && rpcData.smallImage.hoverText === "Sol's RNG" && rpcData.largeImage){
                 const biome = rpcData.largeImage.hoverText;
                 const state = rpcData.state;
+
+                if(state === "In Main Menu") return; // reason why it spam webhook
+
                 const assetId = rpcData.largeImage.assetId;
                 // First condition check if the action is equip aura lol
                 if(state == prevState || !prevState){
