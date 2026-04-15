@@ -11,17 +11,17 @@ async function rollBiome(){
     const res = ScreenManager.getResolution();
     const biome = getCurrentBiome();
     if(isRobloxFocused() && !(biome === "GLITCHED" || biome === "CYBERSPACE" || biome === "DREAMSPACE")){
-        TouchManager.touch(...ActionBar.getPos(ACTION_BUTTON.INVENTORY));
+        await TouchManager.tap(...ActionBar.getPos(ACTION_BUTTON.INVENTORY));
         await sleep(delay);
-        TouchManager.touch(...Inventory.getPos(res, INVENTORY_BUTTON.SEARCH));
+        await TouchManager.tap(...Inventory.getPos(res, INVENTORY_BUTTON.SEARCH));
         await sleep(delay);
-        TouchManager.typeText("strange controller");
+        await TouchManager.typeText("strange controller");
         await sleep(delay);
-        TouchManager.touch(...Inventory.getPos(res, INVENTORY_BUTTON.FIRST_ITEM_SLOT));
+        await TouchManager.tap(...Inventory.getPos(res, INVENTORY_BUTTON.FIRST_ITEM_SLOT));
         await sleep(delay);
-        TouchManager.touch(...Inventory.getPos(res, INVENTORY_BUTTON.USE));
+        await TouchManager.tap(...Inventory.getPos(res, INVENTORY_BUTTON.USE));
         await sleep(delay);
-        TouchManager.touch(...ActionBar.getPos(ACTION_BUTTON.INVENTORY));
+        await TouchManager.tap(...ActionBar.getPos(ACTION_BUTTON.INVENTORY));
         console.log("Used strange controller!");
     }
     setTimeout(rollBiome, 30000);
