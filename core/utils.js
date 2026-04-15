@@ -21,5 +21,6 @@ function getCurrentBiome(){
 
 module.exports = {
     sleep,
-    isRobloxFocused
+    isRobloxFocused,
+    getCurrentBiome
 }
