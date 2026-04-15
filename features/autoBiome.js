@@ -13,6 +13,8 @@ async function rollBiome(){
     if(isRobloxFocused() && !(biome === "GLITCHED" || biome === "CYBERSPACE" || biome === "DREAMSPACE")){
         await TouchManager.tap(...ActionBar.getPos(ACTION_BUTTON.INVENTORY));
         await sleep(delay);
+        await TouchManager.tap(...Inventory.getPos(res, INVENTORY_BUTTON.ITEMS));
+        await sleep(delay);
         await TouchManager.tap(...Inventory.getPos(res, INVENTORY_BUTTON.SEARCH));
         await sleep(delay);
         await TouchManager.typeText("strange controller");
