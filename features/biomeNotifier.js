@@ -76,7 +76,7 @@ function startNotifier(){
     for(const biome in APP_CONFIG.webhook_notification){
         if(APP_CONFIG.webhook_notification[biome]) biomes.push(biome);
     }
-    sendWebhook("Biome Notifier started!", false, "", "Status");
+    if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook("Biome Notifier started!", false, "", "Status");
     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus("UNKNOWN");
     spawn("rish", ["-c", "logcat -c"]);
     const logcat = spawn("rish", ["-c", "logcat"]);
