@@ -6,11 +6,11 @@ class TouchManager {
     }
 
     static async tapBlank(w){
-        await this.tap(w / 2, 50);
+        this.tap(w / 2, 50);
     }
 
     static async typeText(content){
-        return await exec(`rish -c 'input text "${content}"'`);
+        return exec(`rish -c 'input text "${content}"'`);
     }
 }
 

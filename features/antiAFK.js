@@ -4,11 +4,8 @@ const { RobloxUI } = require("../core/gameUI/RobloxUI");
 const { ScreenManager } = require("../core/ScreenManager");
 const { isRobloxFocused } = require("../core/utils");
 
-parentPort.on("message", async function(){
-    setInterval(() => {
-        if(isRobloxFocused()){
-            const res = ScreenManager.getResolution();
-            await TouchManager.tap(...RobloxUI.getJumpButton(res));
-        }
+parentPort.on("message", function(){
+    setInterval(async () => {
+        if(isRobloxFocused()) await TouchManager.tap(...RobloxUI.getJumpButton(ScreenManager.getResolution()));
     }, 300000); // 5 mins
 });
