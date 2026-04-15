@@ -74,7 +74,7 @@ watch("./state.txt", async (eventType, _) => {
     }
 });
 
-//updateMainButtonState();
+updateMainButtonState();
 createWorker("notifier", "./features/biomeNotifier.js", APP_CONFIG.notifier);
 console.log("Started Biome Notifier!");
 

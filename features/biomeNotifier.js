@@ -1,5 +1,6 @@
 const { exec, spawn } = require('child_process');
 const { readFileSync, writeFileSync, existsSync } = require("fs");
+const { writeFile } = require("fs/promises");
 const { parentPort } = require("node:worker_threads");
 const split2 = require("split2");
 const RPC_REGEX = /\[BloxstrapRPC.*?\}\}\}/;
@@ -101,6 +102,7 @@ function startNotifier(){
                             if(APP_CONFIG.rare_biome_actions.vibrate) exec("termux-vibrate");
                         }
                         if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook(biome, isRareBiome, assetId);
+                        writeFile("./biomeCache.txt", biome);
                     }
                     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus(biome);
                 }

@@ -1,5 +1,5 @@
 const { parentPort } = require("node:worker_threads");
-const { sleep, isRobloxFocused } = require("../core/utils");
+const { sleep, isRobloxFocused, getCurrentBiome } = require("../core/utils");
 const { TouchManager } = require("../core/TouchManager");
 const { Inventory, INVENTORY_BUTTON } = require("../core/gameUI/Inventory");
 const { ActionBar, ACTION_BUTTON } = require("../core/gameUI/ActionBar");
@@ -9,7 +9,8 @@ const delay = 500;
 
 async function rollBiome(){
     const res = ScreenManager.getResolution();
-    if(isRobloxFocused()){
+    const biome = getCurrentBiome();
+    if(isRobloxFocused() && !(biome === "GLITCHED" || biome === "CYBERSPACE" || biome === "DREAMSPACE")){
         TouchManager.touch(...ActionBar.getPos(ACTION_BUTTON.INVENTORY));
         await sleep(delay);
         TouchManager.touch(...Inventory.getPos(res, INVENTORY_BUTTON.SEARCH));
