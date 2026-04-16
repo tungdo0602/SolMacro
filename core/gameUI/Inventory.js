@@ -21,7 +21,7 @@ class Inventory {
                 return [w / 2 - 25, h / 2 - 230];
             
             case INVENTORY_BUTTON.SEARCH:
-                return [w / 2 - 25, h / 2 - 195];
+                return [w / 2 + 350, h / 2 - 195];
             
             case INVENTORY_BUTTON.FIRST_ITEM_SLOT:
                 return [w / 2 - 125, h / 2 - 75];

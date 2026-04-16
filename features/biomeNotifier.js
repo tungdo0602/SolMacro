@@ -71,6 +71,7 @@ console.log("Make sure to enable shizuku before start!");
 
 let biomes = [];
 let prevState = "";
+let prevBiome = "";
 
 function startNotifier(){
     for(const biome in APP_CONFIG.webhook_notification){
@@ -90,11 +91,11 @@ function startNotifier(){
                 const biome = rpcData.largeImage.hoverText;
                 const state = rpcData.state;
 
-                if(state === "In Main Menu") return; // reason why it spam webhook
+                //if(state === "In Main Menu") return; // reason why it spam webhook
 
                 const assetId = rpcData.largeImage.assetId;
                 // First condition check if the action is equip aura lol
-                if(state == prevState || !prevState){
+                if((state == prevState || !prevState) && (biome !== prevBiome)){
                     if(biomes.includes(biome)){
                         let isRareBiome = (biome == "GLITCHED" || biome == "DREAMSPACE" || biome == "CYBERSPACE");
                         if(isRareBiome){
@@ -102,8 +103,9 @@ function startNotifier(){
                             if(APP_CONFIG.rare_biome_actions.vibrate) exec("termux-vibrate");
                         }
                         if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook(biome, isRareBiome, assetId);
-                        writeFile("./biomeCache.txt", biome);
                     }
+                    prevBiome = biome;
+                    writeFile("./biomeCache.txt", biome);
                     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus(biome);
                 }
                 prevState = state;
