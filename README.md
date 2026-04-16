@@ -65,5 +65,6 @@ cd storage/SolMacro && bash start.sh`
 
 + **Why biome notifier/detection not working?**
 \- Possible Solutions:
+  + Make sure **Shizuku is running**, try press start button again to restart service
   + Open settings and make sure **Logger buffer size** is >= **1M**
   + Make sure you disable **Battery Optimization** for Termux, Termux:API and Shizuku
