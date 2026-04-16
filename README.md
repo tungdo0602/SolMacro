@@ -1,12 +1,19 @@
 # Biome Notifier
 #### Simple Sol's RNG macro for android
 
+## Table of contents (Read FAQ first before asking)
++ [Features](#features)
++ [Installation](#installation)
++ [Setup](#setup)
++ [FAQ](#faq)
+
+
 ## Features
 + Biome detection & notifier
-+ Anti AFK
-+ Auto roll biome (experimental)
-+ Merchant detection (TODO)
-+ Fish automation (TODO)
++ Anti AFK (Beta)
++ Auto roll biome (Beta)
++ Merchant detection (Todo)
++ Fish automation (Todo)
 
 ## Installation
 #### Required apps:
@@ -51,3 +58,12 @@ cd storage/SolMacro && bash start.sh`
 + Open Roblox and start afk (You can close the Termux window, it will run in background)
 
 #### You can use Termux:widget to add a shortcut to the home screen so you don't need to open Termux and run command again
+
+## FAQ
++ **Why I don't see start button in Shizuku?**
+\- You need to have Android 11+ in order to have **Wireless Debugging**
+
++ **Why biome notifier/detection not working?**
+\- Possible Solutions:
+  + Open settings and make sure **Logger buffer size** is >= **1M**
+  + Make sure you disable **Battery Optimization** for Termux, Termux:API and Shizuku
