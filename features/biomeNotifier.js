@@ -1,5 +1,6 @@
 const { exec, spawn } = require('child_process');
 const { readFileSync, writeFileSync, existsSync } = require("fs");
+const { writeFile } = require("fs/promises");
 const { parentPort } = require("node:worker_threads");
 const split2 = require("split2");
 const RPC_REGEX = /\[BloxstrapRPC.*?\}\}\}/;
@@ -70,17 +71,18 @@ console.log("Make sure to enable shizuku before start!");
 
 let biomes = [];
 let prevState = "";
+let prevBiome = "";
 
 function startNotifier(){
     for(const biome in APP_CONFIG.webhook_notification){
         if(APP_CONFIG.webhook_notification[biome]) biomes.push(biome);
     }
-    sendWebhook("Biome Notifier started!", false, "", "Status");
+    if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook("Biome Notifier started!", false, "", "Status");
     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus("UNKNOWN");
     spawn("rish", ["-c", "logcat -c"]);
     const logcat = spawn("rish", ["-c", "logcat"]);
 
-    logcat.stdout.pipe(split2()).on("data", (line)=>{
+    logcat.stdout.pipe(split2()).on("data", (line) => {
         const text = line.toString();
         const res = text.match(RPC_REGEX);
         if(res){
@@ -88,9 +90,12 @@ function startNotifier(){
             if(rpcData.smallImage && rpcData.smallImage.hoverText === "Sol's RNG" && rpcData.largeImage){
                 const biome = rpcData.largeImage.hoverText;
                 const state = rpcData.state;
+
+                //if(state === "In Main Menu") return; // reason why it spam webhook
+
                 const assetId = rpcData.largeImage.assetId;
                 // First condition check if the action is equip aura lol
-                if(state == prevState || !prevState){
+                if((state == prevState || !prevState) && (biome !== prevBiome)){
                     if(biomes.includes(biome)){
                         let isRareBiome = (biome == "GLITCHED" || biome == "DREAMSPACE" || biome == "CYBERSPACE");
                         if(isRareBiome){
@@ -99,6 +104,8 @@ function startNotifier(){
                         }
                         if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook(biome, isRareBiome, assetId);
                     }
+                    prevBiome = biome;
+                    writeFile("./biomeCache.txt", biome);
                     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus(biome);
                 }
                 prevState = state;

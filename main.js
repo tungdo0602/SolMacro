@@ -29,8 +29,7 @@ let APP_CONFIG = {
     }
 }
 
-const { readFileSync, writeFileSync, existsSync, watch } = require("fs");
-const { readFile, writeFile } = require("fs/promises");
+const { readFileSync, writeFileSync, existsSync } = require("fs");
 const { execSync } = require("child_process");
 const { Worker } = require("node:worker_threads");
 
@@ -51,30 +50,6 @@ function createWorker(name, path, data = {}){
     if(data) workers[name].postMessage(data);
 }
 
-function updateMainButtonState(){
-    execSync(`termux-notification -i "solmacro" -t "SolMacro" --ongoing --button1 "${workers.autoBiome ? "Disable" : "Enable"} Auto Biome" --button1-action "echo 1 > $PWD/state.txt" --button2 "${workers.autoFishing ? "Disable" : "Enable"} Auto Fishing" --button2-action "echo 2 > $PWD/state.txt"`)
-}
-
-writeFileSync("./state.txt", "");
-
-watch("./state.txt", async (eventType, _) => {
-    if(eventType == "change"){
-        const state = (await readFile("./state.txt", "utf-8")).trim();
-        if(state === "1"){
-            if(workers.autoBiome){
-                workers.autoBiome.terminate();
-                workers.autoBiome = null;
-            } else createWorker("autoBiome", "./features/autoBiome.js");
-            updateMainButtonState();
-            console.log((workers.autoBiome ? "Enabled" : "Disabled"), "Auto Biome!");
-        } else if(state === "2"){
-            // TODO
-        }
-        await writeFile("./state.txt", "");
-    }
-});
-
-//updateMainButtonState();
 createWorker("notifier", "./features/biomeNotifier.js", APP_CONFIG.notifier);
 console.log("Started Biome Notifier!");
 
@@ -82,3 +57,5 @@ if(APP_CONFIG.anti_AFK){
     createWorker("antiAFK", "./features/antiAFK.js");
     console.log("Started Anti AFK!");
 }
+
+//createWorker("autoBiome", "./features/autoBiome.js");
