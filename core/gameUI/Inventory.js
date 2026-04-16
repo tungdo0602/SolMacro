@@ -12,10 +12,13 @@ class Inventory {
 
         switch(button){
             case INVENTORY_BUTTON.USE:
-                return [w / 2 - 25, h / 2 - 230];
+                return [w / 2 - 315, h / 2 + 45];
             
-            case INVENTORY_BUTTON.GEARS:
+            case INVENTORY_BUTTON.ITEMS:
                 return [w / 2 + 350, h / 2 - 230];
+
+            case INVENTORY_BUTTON.GEARS:
+                return [w / 2 - 25, h / 2 - 230];
             
             case INVENTORY_BUTTON.SEARCH:
                 return [w / 2 - 25, h / 2 - 195];

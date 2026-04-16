@@ -8,7 +8,7 @@ const { ScreenManager } = require("../core/ScreenManager");
 const delay = 500;
 
 async function rollBiome(){
-    const res = ScreenManager.getResolution();
+    const res = await ScreenManager.getResolution();
     const biome = getCurrentBiome();
     if(isRobloxFocused() && !(biome === "GLITCHED" || biome === "CYBERSPACE" || biome === "DREAMSPACE")){
         await TouchManager.tap(...ActionBar.getPos(ACTION_BUTTON.INVENTORY));
