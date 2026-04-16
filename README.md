@@ -61,10 +61,10 @@ cd storage/SolMacro && bash start.sh`
 
 ## FAQ
 + **Why I don't see start button in Shizuku?**
-\- You need to have Android 11+ in order to have **Wireless Debugging**
+- You need to have Android 11+ in order to have **Wireless Debugging**
 
 + **Why biome notifier/detection not working?**
-\- Possible Solutions:
+- Possible Solutions:
   + Make sure **Shizuku is running**, try press start button again to restart service
   + Open settings and make sure **Logger buffer size** is >= **1M**
   + Make sure you disable **Battery Optimization** for Termux, Termux:API and Shizuku

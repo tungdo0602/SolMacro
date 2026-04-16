@@ -75,7 +75,7 @@ let prevBiome = "";
 
 function startNotifier(){
     for(const biome in APP_CONFIG.webhook_notification){
-        if(APP_CONFIG.webhook_notification[biome]) biomes.push(biome);
+        if(APP_CONFIG.webhook_notification[biome]) biomes.push((biome === "SANDSTORM" ? "SANDSTORM" : biome));
     }
     if(APP_CONFIG.webhook.enable && APP_CONFIG.webhook.url) sendWebhook("Biome Notifier started!", false, "", "Status");
     if(APP_CONFIG.push_current_biome_notification) pushBiomeStatus("UNKNOWN");
