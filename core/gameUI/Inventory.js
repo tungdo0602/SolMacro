@@ -9,25 +9,26 @@ const INVENTORY_BUTTON = {
 class Inventory {
     static getPos(res, button){
         const [w, h] = res;
+        let pos = [0, 0];
 
         switch(button){
             case INVENTORY_BUTTON.USE:
-                return [w / 2 - 315, h / 2 + 45];
+                pos = [w / 2 - 315, h / 2 + 45];
             
             case INVENTORY_BUTTON.ITEMS:
-                return [w / 2 + 350, h / 2 - 230];
+                pos =  [w / 2 + 350, h / 2 - 230];
 
             case INVENTORY_BUTTON.GEARS:
-                return [w / 2 - 25, h / 2 - 230];
+                pos =  [w / 2 - 25, h / 2 - 230];
             
             case INVENTORY_BUTTON.SEARCH:
-                return [w / 2 + 350, h / 2 - 195];
+                pos =  [w / 2 + 350, h / 2 - 195];
             
             case INVENTORY_BUTTON.FIRST_ITEM_SLOT:
-                return [w / 2 - 125, h / 2 - 75];
+                pos =  [w / 2 - 125, h / 2 - 75];
         }
 
-        return [0, 0];
+        return pos.map(v => Math.floor(v));
     }
 }
 
