@@ -1,19 +1,19 @@
-const { execSync } = require("child_process");
-const { readFileSync } = require("fs");
+const { exec } = require("child_process");
+const { readFile } = require("fs");
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-function isRobloxFocused(){
+async function isRobloxFocused(){
     try {
-        return Boolean(execSync("rish -c 'dumpsys window | grep mFocusedWindow=com.roblox.client'").toString());
+        return Boolean((await exec("rish -c 'dumpsys window | grep mFocusedWindow=com.roblox.client'")).toString());
     } catch {
         return false;
     }
 }
 
-function getCurrentBiome(){
+async function getCurrentBiome(){
     try {
-        return readFileSync("./biomeCache.txt");
+        return await readFile("./biomeCache.txt");
     } catch {
         return "";
     }

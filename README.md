@@ -37,7 +37,7 @@ termux-setup-storage
 pkg install termux-api nodejs git grep
 ```
 ```bash
-cd storage && git clone "https://github.com/tungdo0602/SolMacro.git" && cd SolMacro && bash setup.sh
+cd storage && git clone -b main "https://github.com/tungdo0602/SolMacro.git" && cd SolMacro && bash setup.sh
 ```
 + Open QuickEdit -> open (SAF), then heads to Termux tab on the dropdown and open `storage` -> `SolMacro` folder and edit `config.json`
 <img src="https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/image2.webp" width="200"/>

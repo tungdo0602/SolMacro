@@ -5,12 +5,12 @@ const { Inventory, INVENTORY_BUTTON } = require("../core/gameUI/Inventory");
 const { ActionBar, ACTION_BUTTON } = require("../core/gameUI/ActionBar");
 const { ScreenManager } = require("../core/ScreenManager");
 
-const delay = 500;
+const delay = 1000;
 
 async function rollBiome(){
     const res = await ScreenManager.getResolution();
-    const biome = getCurrentBiome();
-    if(isRobloxFocused() && !(biome === "GLITCHED" || biome === "CYBERSPACE" || biome === "DREAMSPACE")){
+    const biome = await getCurrentBiome();
+    if((await isRobloxFocused()) && !(biome === "GLITCHED" || biome === "CYBERSPACE" || biome === "DREAMSPACE")){
         await TouchManager.tap(...ActionBar.getPos(ACTION_BUTTON.INVENTORY));
         await sleep(delay);
         await TouchManager.tap(...Inventory.getPos(res, INVENTORY_BUTTON.ITEMS));
