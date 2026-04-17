@@ -27,10 +27,10 @@
 #### Apps Setup
 + Install required apps
 + Go to settings, enable developer mode (if you haven't)
-+ Enable Wireless Debugging and USB Debugging
-+ Open Shizuku and open its settings, then enable `Start on boot` and `Watchdog`.
++ Enable **Wireless Debugging**, **USB Debugging** and **Disable child process restrictions** (if you have this one)
++ Open Shizuku and open its settings, then enable **Start on boot** and **Watchdog**.
 + After that go back and start it ([Tutorial](https://youtu.be/tm5qvhw7T6Q?si=uNeBvMtabtWX4X9X&t=129))
-+ Open settings -> Apps -> Termux -> Battery, choose "Unrestricted", do the same thing with Termux:API
++ Open **Settings -> Apps -> Termux -> Battery**, choose **Unrestricted**, do the same thing with **Termux:API** and **Shizuku**
 <img src="https://dontkillmyapp.com/assets/img/samsung/samsung13_per_app_4.jpg" width="200"/>
 
 For more infomation go to [here](https://dontkillmyapp.com/) for specific android phone
@@ -41,10 +41,7 @@ For more infomation go to [here](https://dontkillmyapp.com/) for specific androi
 termux-setup-storage
 ```
 ```bash
-pkg install termux-api nodejs git grep
-```
-```bash
-cd storage && git clone -b main "https://github.com/tungdo0602/SolMacro.git" && cd SolMacro && bash setup.sh
+curl -fsSL https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/scripts/setup.sh | bash
 ```
 + Open QuickEdit -> open (SAF), then heads to Termux tab on the dropdown and open `storage` -> `SolMacro` folder and edit `config.json`
 <img src="https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/image2.webp" width="200"/>
@@ -68,3 +65,5 @@ cd storage/SolMacro && bash start.sh`
   + Make sure **Shizuku is running**, try press start button again to restart service
   + Open settings and make sure **Logger buffer size** is >= **1M**
   + Make sure you disable **Battery Optimization** for Termux, Termux:API and Shizuku
+  + Try lock/pin **Shizuku** and **Termux** window
+<img src="https://dontkillmyapp.com/assets/img/samsung/samsung_keep_open.jpg" width="200"/>

@@ -64,6 +64,7 @@ async function sendWebhook(biome, isRareBiome, assetId = "", title = "Biome Star
     });
     if(res.status !== 204){
         console.log(`Failed to send webhook [${res.status}]`);
+        console.log(await res.json());
     }
 }
 
