@@ -41,7 +41,7 @@ For more infomation go to [here](https://dontkillmyapp.com/) for specific androi
 termux-setup-storage
 ```
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/scripts/setup.sh)
+curl -fsSL https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/scripts/setup.sh | bash
 ```
 + Open QuickEdit -> open (SAF), then heads to Termux tab on the dropdown and open `storage` -> `SolMacro` folder and edit `config.json`
 <img src="https://raw.githubusercontent.com/tungdo0602/SolMacro/refs/heads/main/assets/image2.webp" width="200"/>
