@@ -30,7 +30,7 @@
 + Enable **Wireless Debugging**, **USB Debugging** and **Disable child process restrictions** (if you have this one)
 + Open Shizuku and open its settings, then enable **Start on boot** and **Watchdog**.
 + After that go back and start it ([Tutorial](https://youtu.be/tm5qvhw7T6Q?si=uNeBvMtabtWX4X9X&t=129))
-+ Open settings -> Apps -> Termux -> Battery, choose "Unrestricted", do the same thing with Termux:API
++ Open **Settings -> Apps -> Termux -> Battery**, choose **Unrestricted**, do the same thing with **Termux:API** and **Shizuku**
 <img src="https://dontkillmyapp.com/assets/img/samsung/samsung13_per_app_4.jpg" width="200"/>
 
 For more infomation go to [here](https://dontkillmyapp.com/) for specific android phone
