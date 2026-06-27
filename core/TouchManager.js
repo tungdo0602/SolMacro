@@ -2,7 +2,7 @@ const { exec } = require("child_process");
 
 class TouchManager {
     static async tap(x, y){
-        return exec(`rish -c "input tap ${x} ${y}"`);
+        exec(`rish -c "input tap ${x} ${y}"`);
     }
 
     static async tapBlank(w){
@@ -10,7 +10,7 @@ class TouchManager {
     }
 
     static async typeText(content){
-        return exec(`rish -c 'input text "${content}"'`);
+        exec(`rish -c 'input text "${content}"'`);
     }
 }
 

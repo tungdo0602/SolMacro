@@ -2,7 +2,6 @@
 #### Simple Sol's RNG macro for android
 
 # DISCONTINUED, use [DroidScope](https://github.com/ScopeDevelopment/DroidScope)
-+ Lost motivation and also I need to focus on my study for graduation exam
 
 ## Table of contents (Read FAQ first before asking)
 + [Features](#features)
