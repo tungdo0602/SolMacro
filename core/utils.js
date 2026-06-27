@@ -1,11 +1,11 @@
-const { exec } = require("child_process");
+const { execSync } = require("child_process");
 const { readFile } = require("fs");
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 async function isRobloxFocused(){
     try {
-        return Boolean((await exec("rish -c 'dumpsys window | grep mFocusedWindow=com.roblox.client'")).toString());
+        return Boolean((execSync("rish -c 'dumpsys window | grep mFocusedWindow=com.roblox.client'")).toString());
     } catch {
         return false;
     }

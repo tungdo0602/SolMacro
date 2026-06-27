@@ -1,11 +1,11 @@
-const { exec } = require("child_process");
+const { execSync } = require("child_process");
 
 class ScreenManager {
     /*
     [0, 0] position started at top left screen
     */
     static async getResolution(){
-        return await exec("rish -c 'wm size'")
+        return execSync("rish -c 'wm size'")
                 .toString()
                 .slice(15)
                 .split("x")
@@ -14,7 +14,7 @@ class ScreenManager {
     }
 
     static async getOrientation(){
-        return await Number(
+        return Number(
                 execSync("rish -c 'dumpsys display | grep mCurrentOrientation'")
                 .toString()
                 .trim()[20]
